@@ -313,7 +313,7 @@ submitBtn.onclick = async () => {
 
     localStorage.setItem("sprint_comprador", JSON.stringify({nombre, telefono}));
     localStorage.setItem("sprint_jersey_registrada", "SI");
-    jerseyStatus.textContent = "Solicitud enviada. Comprobá el registro en Google Sheets para confirmar.";
+    jerseyStatus.textContent = "Solicitud completa. Tenés tiempo hasta el 31 de octubre para abonar el 50%. Pronto nos comunicamos contigo para gestionar el pago.";
     submitBtn.textContent = "REGISTRAR MI JERSEY";
     submitBtn.disabled = false;
   } catch (e) {
@@ -344,7 +344,7 @@ rideBtn.onclick = async () => {
     });
 
     rideBtn.textContent = "¡SÍ VOY!";
-    rideStatus.textContent = "Solicitud enviada. Verificá en la pestaña Social Ride de Google Sheets que aparezca una fila con SI.";
+    rideStatus.textContent = "¡Te esperamos! 😊";
     rideBtn.disabled = false;
   } catch (e) {
     rideBtn.disabled = false;
