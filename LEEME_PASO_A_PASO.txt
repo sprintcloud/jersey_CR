@@ -1,0 +1,67 @@
+SPRINT - Web Jersey + Social Ride
+
+ESTA WEB ES SEPARADA DE LA VOTACIÓN
+pero usa el MISMO archivo de Google Sheets y la misma URL de Apps Script.
+
+CONFIGURACIÓN DEL GOOGLE SHEETS
+
+1) Abre:
+   Sprint - Proyecto Jersey Nocturna CR
+
+2) Deja la pestaña "Votos" exactamente como está.
+
+3) Crea una pestaña nueva:
+   Compras Jersey
+
+4) En A1 pega:
+   Fecha    Nombre    Telefono    Talla
+
+5) Crea otra pestaña nueva:
+   Social Ride
+
+6) En A1 pega:
+   Fecha    Asiste    Nombre    Telefono
+
+ACTUALIZAR APPS SCRIPT
+
+1) Abre el mismo proyecto de Apps Script que usa la votación.
+2) Abre Código.gs.
+3) Borra todo el contenido.
+4) Copia y pega TODO el contenido de:
+   AppsScript_Codigo_Completo.gs
+
+5) Guarda.
+
+6) Ve a:
+   Implementar > Gestionar implementaciones
+
+7) Pulsa el lápiz de editar.
+
+8) En "Versión", selecciona NUEVA VERSIÓN.
+
+9) Mantén:
+   Ejecutar como: Yo
+   Quién tiene acceso: Cualquiera
+
+10) Pulsa Implementar.
+
+IMPORTANTE
+Si editas la implementación existente, la URL /exec debería seguir siendo la misma.
+La web de votación seguirá funcionando porque el nuevo código mantiene compatibilidad
+con los votos que no envían el campo "tipo".
+
+CÓMO FUNCIONA LA NUEVA WEB
+
+- "QUIERO MI JERSEY":
+  abre formulario de Nombre, Teléfono y Talla.
+  Abajo muestra la guía de tallas.
+  Guarda en la pestaña "Compras Jersey".
+
+- "SÍ VOY":
+  guarda directamente "SI" en la pestaña "Social Ride".
+  Si la persona ya completó el formulario de jersey en ese navegador,
+  también guarda su nombre y teléfono.
+  Si no lo completó, guarda únicamente la confirmación "SI" y la fecha.
+
+PRUEBA
+Abre index.html en Chrome antes de subirlo a GitHub.
