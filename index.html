@@ -219,12 +219,12 @@ footer{border-top:1px solid #191919;text-align:center;padding:30px;color:#666;fo
     <div class="formGrid">
       <div class="field">
         <label for="nombre">Nombre y apellido</label>
-        <input id="nombre" type="text" autocomplete="name" placeholder="Ej. Pedro Pérez">
+        <input id="nombre" type="text" autocomplete="off" name="solicitud_nombre" placeholder="Ej. Pedro Pérez">
       </div>
 
       <div class="field">
         <label for="telefono">Teléfono / WhatsApp</label>
-        <input id="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej. +506 8888 8888">
+        <input id="telefono" type="tel" inputmode="tel" autocomplete="off" name="solicitud_telefono" placeholder="Ej. +506 8888 8888">
       </div>
 
       <div class="field full">
@@ -266,15 +266,24 @@ const jerseyStatus = document.getElementById("jerseyStatus");
 const rideBtn = document.getElementById("rideBtn");
 const rideStatus = document.getElementById("rideStatus");
 
-openBtn.onclick = () => modal.classList.add("open");
+function limpiarFormularioJersey() {
+  document.getElementById("nombre").value = "";
+  document.getElementById("telefono").value = "";
+  document.getElementById("talla").value = "";
+}
+
+openBtn.onclick = () => {
+  limpiarFormularioJersey();
+  jerseyStatus.textContent = "";
+  modal.classList.add("open");
+  // Algunos navegadores restauran campos justo después de abrir el modal.
+  setTimeout(limpiarFormularioJersey, 100);
+};
 closeBtn.onclick = () => modal.classList.remove("open");
 modal.onclick = e => { if (e.target === modal) modal.classList.remove("open"); };
 
-const savedPerson = JSON.parse(localStorage.getItem("sprint_comprador") || "null");
-if (savedPerson) {
-  document.getElementById("nombre").value = savedPerson.nombre || "";
-  document.getElementById("telefono").value = savedPerson.telefono || "";
-}
+// Eliminar los datos personales guardados por versiones anteriores de la web.
+localStorage.removeItem("sprint_comprador");
 
 submitBtn.onclick = async () => {
   const nombre = document.getElementById("nombre").value.trim();
@@ -311,8 +320,8 @@ submitBtn.onclick = async () => {
       })
     });
 
-    localStorage.setItem("sprint_comprador", JSON.stringify({nombre, telefono}));
     localStorage.setItem("sprint_jersey_registrada", "SI");
+    limpiarFormularioJersey();
     jerseyStatus.textContent = "Solicitud completa. Tenés tiempo hasta el 31 de octubre para abonar el 50%. Pronto nos comunicamos contigo para gestionar el pago.";
     submitBtn.textContent = "REGISTRAR MI JERSEY";
     submitBtn.disabled = false;
